@@ -3,11 +3,11 @@ using Microsoft.Extensions.Options;
 
 using SyncAgent.Core.Abstractions;
 using SyncAgent.Core.Dispatching;
-using SyncAgent.Core.Platform;
 using SyncAgent.Core.Validation;
 using SyncAgent.Infrastructure.Options;
+using SyncAgent.Infrastructure.Platform;
 
-namespace SyncAgent.Core
+namespace SyncAgent.Infrastructure
 {
     public static class DependencyInjection
     {

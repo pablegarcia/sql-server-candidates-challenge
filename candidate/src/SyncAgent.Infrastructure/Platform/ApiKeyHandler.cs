@@ -2,7 +2,7 @@
 
 using SyncAgent.Infrastructure.Options;
 
-namespace SyncAgent.Core.Platform
+namespace SyncAgent.Infrastructure.Platform
 {
     public sealed class ApiKeyHandler(IOptions<PlatformOptions> options) : DelegatingHandler
     {

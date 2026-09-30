@@ -1,8 +1,11 @@
+using SyncAgent.Infrastructure;
 using SyncAgent.Infrastructure.Options;
 using SyncAgent.Worker;
 
 var builder = Host.CreateApplicationBuilder(args);
-builder.Services.AddHostedService<Worker>();
+
+builder.Services.AddSyncAgent();
+builder.Services.AddHostedService<PollingWorker>();
 
 builder.Services.AddOptions<PlatformOptions>()
     .Bind(builder.Configuration.GetSection(PlatformOptions.SectionName))

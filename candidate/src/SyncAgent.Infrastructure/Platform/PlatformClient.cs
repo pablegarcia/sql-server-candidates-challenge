@@ -7,7 +7,7 @@ using Microsoft.Extensions.Logging;
 using SyncAgent.Core.Abstractions;
 using SyncAgent.Core.Models;
 
-namespace SyncAgent.Core.Platform
+namespace SyncAgent.Infrastructure.Platform
 {
     public sealed class PlatformClient(HttpClient httpClient, ILogger<PlatformClient> logger) : IPlatformClient
     {

@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\SyncAgent.Core\SyncAgent.Core.csproj" />
     <ProjectReference Include="..\SyncAgent.Infrastructure\SyncAgent.Infrastructure.csproj" />
   </ItemGroup>
 </Project>
