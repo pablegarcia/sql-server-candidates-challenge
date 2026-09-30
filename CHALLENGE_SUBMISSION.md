@@ -2,7 +2,7 @@
 
 ## Candidate
 
-- **Name:**
+- **Name:** Pablo García Fernández 
 - **Date:**
 
 ---
