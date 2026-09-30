@@ -4,6 +4,11 @@ using Microsoft.Extensions.Options;
 using SyncAgent.Core.Abstractions;
 using SyncAgent.Core.Dispatching;
 using SyncAgent.Core.Validation;
+using SyncAgent.Infrastructure.Data;
+using SyncAgent.Infrastructure.Handlers.Customers;
+using SyncAgent.Infrastructure.Handlers.Inventory;
+using SyncAgent.Infrastructure.Handlers.Orders;
+using SyncAgent.Infrastructure.Handlers.Products;
 using SyncAgent.Infrastructure.Options;
 using SyncAgent.Infrastructure.Platform;
 
@@ -18,6 +23,13 @@ namespace SyncAgent.Infrastructure
             services.AddSingleton(TimeProvider.System);
             services.AddSingleton<ISyncTaskValidator, SyncTaskValidator>();
             services.AddSingleton<ISyncTaskDispatcher, SyncTaskDispatcher>();
+
+            services.AddSingleton<IDbConnectionFactory, SqlConnectionFactory>();
+
+            services.AddSingleton<ISyncTaskHandler, GetCustomersHandler>();
+            services.AddSingleton<ISyncTaskHandler, GetProductsHandler>();
+            services.AddSingleton<ISyncTaskHandler, GetOrdersHandler>();
+            services.AddSingleton<ISyncTaskHandler, GetProductInventoryHandler>();
 
             services.AddTransient<ApiKeyHandler>();
             services.AddHttpClient<IPlatformClient, PlatformClient>((sp, client) =>

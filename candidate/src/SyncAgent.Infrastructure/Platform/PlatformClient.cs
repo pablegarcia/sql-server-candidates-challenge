@@ -14,7 +14,10 @@ namespace SyncAgent.Infrastructure.Platform
         private const string NextTaskPath = "api/sync/next-task";
         private const string ResultPath = "api/sync/result";
 
-        public static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web);
+        public static readonly JsonSerializerOptions JsonOptions = new(JsonSerializerDefaults.Web)
+        {
+            Converters = { new UtcDateTimeConverter() }
+        };
 
         public async Task<SyncTask?> GetNextTaskAsync(CancellationToken cancellationToken)
         {
