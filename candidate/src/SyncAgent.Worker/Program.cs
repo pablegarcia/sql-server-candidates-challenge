@@ -5,12 +5,12 @@ var builder = Host.CreateApplicationBuilder(args);
 builder.Services.AddHostedService<Worker>();
 
 builder.Services.AddOptions<PlatformOptions>()
-    .Bind(builder.Configuration.GetSection("Platform"))
+    .Bind(builder.Configuration.GetSection(PlatformOptions.SectionName))
     .ValidateDataAnnotations()
     .ValidateOnStart();
 
 builder.Services.AddOptions<SyncOptions>()
-    .Bind(builder.Configuration.GetSection("Sync"))
+    .Bind(builder.Configuration.GetSection(SyncOptions.SectionName))
     .ValidateDataAnnotations()
     .ValidateOnStart();
 
