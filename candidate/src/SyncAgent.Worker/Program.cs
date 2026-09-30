@@ -14,5 +14,11 @@ builder.Services.AddOptions<SyncOptions>()
     .ValidateDataAnnotations()
     .ValidateOnStart();
 
+builder.Services.AddOptions<DatabaseOptions>()
+    .Configure<IConfiguration>((options, config) =>
+        options.ConnectionString = config.GetConnectionString(DatabaseOptions.ConnectionStringName) ?? string.Empty)
+    .ValidateDataAnnotations()
+    .ValidateOnStart();
+
 var host = builder.Build();
 host.Run();
