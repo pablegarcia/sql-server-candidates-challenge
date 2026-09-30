@@ -2,7 +2,7 @@
 
 namespace SyncAgent.Infrastructure.Options
 {
-    public class SyncOptions
+    public sealed class SyncOptions
     {
         public const string SectionName = "Sync";
 

@@ -4,7 +4,7 @@ using Microsoft.Data.SqlClient;
 
 namespace SyncAgent.Infrastructure.Options
 {
-    public class DatabaseOptions : IValidatableObject
+    public sealed class DatabaseOptions : IValidatableObject
     {
         public const string ConnectionStringName = "AdventureWorks";
 

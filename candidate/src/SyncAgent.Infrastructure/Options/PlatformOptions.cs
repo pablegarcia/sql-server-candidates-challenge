@@ -2,7 +2,7 @@
 
 namespace SyncAgent.Infrastructure.Options
 {
-    public class PlatformOptions : IValidatableObject
+    public sealed class PlatformOptions : IValidatableObject
     {
         public const string SectionName = "Platform";
 
