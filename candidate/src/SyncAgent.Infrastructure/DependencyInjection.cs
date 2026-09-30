@@ -43,7 +43,8 @@ namespace SyncAgent.Infrastructure
                 PooledConnectionLifetime = TimeSpan.FromMinutes(2)
             })
             .SetHandlerLifetime(Timeout.InfiniteTimeSpan)
-            .AddHttpMessageHandler<ApiKeyHandler>();
+            .AddHttpMessageHandler<ApiKeyHandler>()
+            .RedactLoggedHeaders([ApiKeyHandler.HeaderName]);
 
             return services;
         }

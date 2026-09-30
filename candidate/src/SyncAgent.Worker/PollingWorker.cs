@@ -2,6 +2,7 @@
 
 using SyncAgent.Core.Abstractions;
 using SyncAgent.Core.Models;
+using SyncAgent.Core.Validation;
 using SyncAgent.Infrastructure.Options;
 
 namespace SyncAgent.Worker
@@ -60,15 +61,18 @@ namespace SyncAgent.Worker
         {
             if (!TryRemember(task.TaskId))
             {
-                logger.LogWarning("Task {TaskId} was already processed. Skipping.", task.TaskId);
+                logger.LogWarning("Task {TaskId} was already processed. Skipping.", LogSanitizer.Sanitize(task.TaskId));
                 return;
             }
 
-            logger.LogInformation("Received task {TaskId} ({TaskType})", task.TaskId, task.TaskType);
+            logger.LogInformation(
+                "Received task {TaskId} ({TaskType})", LogSanitizer.Sanitize(task.TaskId), LogSanitizer.Sanitize(task.TaskType));
+
             var result = await dispatcher.DispatchAsync(task, cancellationToken);
             await platformClient.PostResultAsync(result, cancellationToken);
+
             logger.LogInformation("Posted result for task {TaskId}: {Status}, {Count} records",
-                result.TaskId, result.Status, result.RecordCount);
+                LogSanitizer.Sanitize(task.TaskId), result.Status, result.RecordCount);
         }
 
         private bool TryRemember(string? taskId)

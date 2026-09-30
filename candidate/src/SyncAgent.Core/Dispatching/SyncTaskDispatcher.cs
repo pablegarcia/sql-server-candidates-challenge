@@ -2,6 +2,7 @@
 
 using SyncAgent.Core.Abstractions;
 using SyncAgent.Core.Models;
+using SyncAgent.Core.Validation;
 
 namespace SyncAgent.Core.Dispatching
 {
@@ -35,7 +36,7 @@ namespace SyncAgent.Core.Dispatching
             var validation = _validator.Validate(task, _supportedTaskTypes);
             if (!validation.IsValid)
             {
-                _logger.LogWarning("Rejected task {TaskId}: {Error}", task.TaskId, validation.Error);
+                _logger.LogWarning("Rejected task {TaskId}: {Error}", LogSanitizer.Sanitize(task.TaskId), validation.Error);
                 return SyncResult.Failed(task, validation.Error!, executedAt);
             }
 
