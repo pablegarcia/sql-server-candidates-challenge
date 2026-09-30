@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Options;
 
 using SyncAgent.Core.Abstractions;
+using SyncAgent.Core.Dispatching;
 using SyncAgent.Core.Platform;
 using SyncAgent.Core.Validation;
 using SyncAgent.Infrastructure.Options;
@@ -16,6 +17,7 @@ namespace SyncAgent.Core
         {
             services.AddSingleton(TimeProvider.System);
             services.AddSingleton<ISyncTaskValidator, SyncTaskValidator>();
+            services.AddSingleton<ISyncTaskDispatcher, SyncTaskDispatcher>();
 
             services.AddTransient<ApiKeyHandler>();
             services.AddHttpClient<IPlatformClient, PlatformClient>((sp, client) =>
